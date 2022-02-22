@@ -1,0 +1,27 @@
+lockfileVersion: 5.3
+
+specifiers:
+  commander: ^9.0.0
+  iconv-lite: ^0.6.3
+
+dependencies:
+  commander: 9.0.0
+  iconv-lite: 0.6.3
+
+packages:
+
+  /commander/9.0.0:
+    resolution: {integrity: sha1-htWPJO6YEmVok2vR01dOAwipmkA=, tarball: commander/download/commander-9.0.0.tgz}
+    engines: {node: ^12.20.0 || >=14}
+    dev: false
+
+  /iconv-lite/0.6.3:
+    resolution: {integrity: sha1-pS+AvzjaGVLrXGgXkHGYcaGnJQE=, tarball: iconv-lite/download/iconv-lite-0.6.3.tgz}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      safer-buffer: 2.1.2
+    dev: false
+
+  /safer-buffer/2.1.2:
+    resolution: {integrity: sha1-RPoWGwGHuVSd2Eu5GAL5vYOFzWo=, tarball: safer-buffer/download/safer-buffer-2.1.2.tgz}
+    dev: false

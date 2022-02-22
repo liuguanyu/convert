@@ -1,0 +1,19 @@
+{
+  "name": "convert",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "convert": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^9.0.0",
+    "iconv-lite": "^0.6.3"
+  }
+}
