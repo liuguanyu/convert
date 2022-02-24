@@ -89,7 +89,7 @@ const convertFormat = async (root, workDirs, sourceFormat, targetFormat) => {
             let s = path.resolve(root, curr)
             let cmd = `ffmpeg -i "${s}" -acodec alac "${tar}"`
 
-            await (__ => {
+            return await (__ => {
                 return new Promise((resolve) => {
                     exec(cmd, (error) => {
                         if (!error) {
@@ -98,8 +98,7 @@ const convertFormat = async (root, workDirs, sourceFormat, targetFormat) => {
                         }
                     }) 
                 })
-            })()
-            return 
+            })() 
         })
     }
 
@@ -140,8 +139,8 @@ const convertFormat = async (root, workDirs, sourceFormat, targetFormat) => {
 
 const main = async (opts) => {
     opts = Object.assign({
-        "root": path.resolve("../"),
-        "filter": el => /^CD[0-9A-Za-z]+/.test(el),
+        "root": path.resolve("/mnt/e/BaiduNetdiskDownload/"),
+        "filter": el => /^CD10/.test(el),
         "sourceFormat": "flac",
         "targetFormat": "m4a"
     }, opts)
@@ -149,7 +148,7 @@ const main = async (opts) => {
     const { root, filter } = opts
     let workDirs = listDir(root, filter)
 
-    // await convertFormat(root, workDirs, opts["sourceFormat"], opts["targetFormat"])
+    await convertFormat(root, workDirs, opts["sourceFormat"], opts["targetFormat"])
     await preventInvalidNameOnWorkDirs(root, workDirs)
 }
 
