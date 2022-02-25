@@ -139,18 +139,30 @@ const convertFormat = async (root, workDirs, sourceFormat, targetFormat) => {
 
 const main = async (opts) => {
     opts = Object.assign({
-        "root": path.resolve("/mnt/e/BaiduNetdiskDownload/"),
-        "filter": el => /^CD10/.test(el),
+        "root": path.resolve("../"),
+        "filter": "^CD[0-9A-Za-z]+$",
         "sourceFormat": "flac",
         "targetFormat": "m4a"
     }, opts)
 
+    opts["filter"] = (el) => new RegExp(opts["filter"]).test(el)
+
     const { root, filter } = opts
     let workDirs = listDir(root, filter)
+    console.log(filter.toString())
 
     await convertFormat(root, workDirs, opts["sourceFormat"], opts["targetFormat"])
     await preventInvalidNameOnWorkDirs(root, workDirs)
 }
+
+program
+  .version(require('../package').version)
+  .option("-r, --root [value]", "the root dir where you scan workdirs")
+  .option("-f, --fil [value]", "the filter regex which test whether the dir is chosen")
+  .option("-s, --sourceformat [value]", "source audio format")
+  .option("-t, --targetformat [value]", "target audio format")
+  .parse(process.argv)
+
 
 ~(async _ => {
     await main(program)
