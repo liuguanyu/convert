@@ -146,8 +146,11 @@ const main = async (opts) => {
         "targetFormat": "m4a"
     }, opts)
 
-    opts.filter = (el) => new RegExp(opts.filter).test(el)
+    let filterString = opts.filter
 
+    opts.filter = (el) => {
+        return new RegExp(filterString).test(el)
+    }
 
     const { root, filter } = opts
     let workDirs = listDir(root, filter)
