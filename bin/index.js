@@ -164,8 +164,8 @@ program
   .version(require('../package').version)
   .option("-r, --root [value]", "the root dir where you scan workdirs")
   .option("-f, --filter [value]", "the filter regex which test whether the dir is chosen")
-  .option("-s, --sourceformat [value]", "source audio format")
-  .option("-t, --targetformat [value]", "target audio format")
+  .option("-s, --sourceFormat [value]", "source audio format")
+  .option("-t, --targetFormat [value]", "target audio format")
   .parse(process.argv)
 
 ~(async _ => {
