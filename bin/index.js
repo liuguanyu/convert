@@ -63,7 +63,6 @@ const convertFormat = async (root, workDirs, sourceFormat, targetFormat) => {
 
     const splitIntoTrackFile = (root, sourceFile, cuePath) => {
         let cmd = `shnsplit  -d "${root}" -f "${cuePath}" -t "%n %t" -o flac "${sourceFile}"`
-
         return new Promise((resolve) => {
             exec(cmd, (error) => {
                 if (!error) {
@@ -110,7 +109,7 @@ const convertFormat = async (root, workDirs, sourceFormat, targetFormat) => {
         paths.forEach(p => { fs.rmSync(path.resolve(root, p)) })
     }
 
-    workDirs.forEach(async el => {
+    let rets = workDirs.map(async el => {
         let dirName = path.resolve(root, el)
         let cuePath = changeCueEncode(dirName)
 
@@ -135,6 +134,8 @@ const convertFormat = async (root, workDirs, sourceFormat, targetFormat) => {
         // await clean(dirName, cleanArray)
         return 
     })
+
+    return Promise.all(rets)
 }
 
 const main = async (opts) => {
